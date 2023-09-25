@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
     "test": "test.js"
   },
   "author": "Hilario Gutierrez",
+  "type": "module",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
