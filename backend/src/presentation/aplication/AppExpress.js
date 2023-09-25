@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class AppExpress {
-
     init () {
         this.app = express();
 

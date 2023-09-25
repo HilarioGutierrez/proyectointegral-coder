@@ -1,9 +1,7 @@
 import AppExpress from "../aplication/appExpress.js";
 
-class appFactory 
-{
-    static create (appType = 'AppExpress')
-    {
+class appFactory {
+    static create (appType = 'AppExpress') {
         const apps = new Map();
         apps.set('AppExpress', AppExpress);
 
