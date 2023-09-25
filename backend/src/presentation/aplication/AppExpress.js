@@ -11,9 +11,18 @@ class AppExpress {
         this.app.use(express.urlencoded({ extended: true }));
     }
 
-    listen(){
-        this.app.listen(process.env.NODE_PORT, () => { console.log(`Server running on port ${process.env.NODE_PORT}`)});
+    build() {
+        this.app.use('/', router);
+        }
+    
+    close() {
+        this.app.close();
     }
+
+    listen() {
+        this.server = this.app.listen(process.env.NODE_PORT, () => { console.log(`Server running on port ${process.env.NODE_PORT}`) 
+    })
+}
 }
 
 export default AppExpress;
