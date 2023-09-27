@@ -1,4 +1,4 @@
-import userMongooseRepository from "../../data/repositories/userMongooseRepository";
+import userMongooseRepository from "../../data/repositories/userMongooseRepository.js";
 
 class userManager {
 
@@ -6,19 +6,19 @@ class userManager {
         this.userManager = new userMongooseRepository()
     }
     async create(user){
-        this.userManager.create(user)
+        return this.userManager.create(user)
     }
 
-    async getOne(user){
-        this.userManager.getOne(user)
+    async getOne(email){
+        return this.userManager.getOne(email)
     }
 
-    async update(email, data) {
-        this.userManager.updateOne(email, data)
+    async updateOne(email, data) {
+        return this.userManager.updateOne(email, data)
     }
 
-    async delete(email) {
-        this.userManager.deleteOne(email)
+    async deleteOne(email) {
+        return this.userManager.deleteOne(email)
     }
 
 

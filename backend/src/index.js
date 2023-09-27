@@ -10,6 +10,7 @@ void (async () => {
     
     const app = appFactory.create(process.env.APPLICATION);
     app.init();
+    app.build();
     app.listen();
 }) 
 

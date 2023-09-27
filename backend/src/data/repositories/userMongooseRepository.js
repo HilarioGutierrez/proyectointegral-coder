@@ -1,6 +1,6 @@
 import User from "../../domain/entities/user.js";
 import { createHash } from "../../domain/utils/passwardHash.js";
-import { userCreateValidation } from "../../domain/validation/userCreateValidation";
+import { userCreateValidation } from "../../domain/validation/userCreateValidation.js";
 import userSchema from "../schema/userSchema.js";
 
 class userMongooseRepository{
@@ -15,31 +15,34 @@ class userMongooseRepository{
                 'firstName': newUser.firstName,
                 'lastName': newUser.lastName,
                 'email': newUser.email,
-                'password': "xxxxxxxxxxx",
-                'lastLogin': newUser.lastLogin
+                'password': newUser.password,
+                'lastLogin': new Date()
             })
 
         } catch (error) {
-            throw new error({message: error.message})
+            throw new Error(error)
         }
     }
 
     async getOne(email) {
         try {
-            const user = await userSchema.findOne({ email:email});
+            const user = await userSchema.findOne(email);
             if(!user){
                 throw new Error ('Sorry, user not Found.');
             }
 
-            return new User({
+            const newUser = new User({
+                'id': user._id,
                 'firstName': user.firstName,
                 'lastName': user.lastName,
                 'email': user.email,
                 'lastlogin':user.lastLogin
             })
 
+            return newUser;
+
         } catch (error) {
-            throw new Error ({error: error.message})
+            throw new Error (error.message)
         }
     }
 
