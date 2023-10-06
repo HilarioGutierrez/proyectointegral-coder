@@ -9,6 +9,10 @@ class userManager {
         return this.userManager.create(user)
     }
 
+    async getAll(criteria){
+        return this.userManager.getAll(criteria)
+    }
+
     async getOne(email){
         return this.userManager.getOne(email)
     }

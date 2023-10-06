@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import router from '../routes/index.js';
+import apiRouter from '../routes/index.js';
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ class AppExpress {
     }
 
     build() {
-        this.app.use('/', router);
+        this.app.use('/', apiRouter );
         }
     
     close() {

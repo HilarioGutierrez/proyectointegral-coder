@@ -24,6 +24,29 @@ class userMongooseRepository{
         }
     }
 
+    async getAll(criteria) {
+    try {
+        const { limit, page } = criteria;
+        const usersDocuments = await userSchema.paginate( {}, {limit: limit, page:page});
+
+        const {docs,... pagination} = usersDocuments;
+
+        const users = usersDocuments.docs.map(user => new User ({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
+            lastLogin: user.lastLogin
+            })
+        );
+        
+        return {users, pagination};
+    
+    } catch (error) {
+        
+    }
+    }
+
     async getOne(email) {
         try {
             const user = await userSchema.findOne(email);

@@ -4,7 +4,7 @@ const manager = new userManager()
 
 export const create = async(req, res, next) => {
     try {
-        const user= req.body;
+        const user = req.body;
 
         if(user.password !== user.confirmPassword){
             res.status(403).send("Invalid password");
@@ -19,6 +19,22 @@ export const create = async(req, res, next) => {
     }
 };
 
+export const getAll = async(req, res, next) =>{
+    try {
+        const query = {
+            limit: +req.query.limit || 5,
+            page: +req.query.page || 1,
+        }
+
+        const list = await manager.getAll(query);
+
+        res.status(200).send({ message: 'User list was successfully', ... list })
+
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 export const getOne = async(req, res, next) => {
     try {
         const { email }  = req.params;
@@ -27,8 +43,7 @@ export const getOne = async(req, res, next) => {
 
         }
         const user = await manager.getOne({ email })
-        console.log(user);
-        res.status(200).send({message: "User created successfully", user})
+        res.status(200).send({message: "User find successfully", user})
     } catch (error) {
         throw new Error(error.message)
     }
