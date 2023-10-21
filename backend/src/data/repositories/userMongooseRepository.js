@@ -49,7 +49,7 @@ class userMongooseRepository{
 
     async getOne(email) {
         try {
-            const user = await userSchema.findOne(email);
+            const user = await userSchema.findOne({email: email});
             if(!user){
                 throw new Error ('Sorry, user not Found.');
             }
@@ -59,6 +59,7 @@ class userMongooseRepository{
                 'firstName': user.firstName,
                 'lastName': user.lastName,
                 'email': user.email,
+                'password': user.password,
                 'lastlogin':user.lastLogin
             })
 

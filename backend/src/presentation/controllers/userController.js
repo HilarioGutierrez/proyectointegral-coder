@@ -1,4 +1,5 @@
 import userManager from "../../domain/manager/userManager.js";
+import User from "../../domain/entities/user.js";
 
 const manager = new userManager()
 
@@ -42,8 +43,16 @@ export const getOne = async(req, res, next) => {
             res.status(403).send("Invalid email");
 
         }
-        const user = await manager.getOne({ email })
-        res.status(200).send({message: "User find successfully", user})
+        const user = await manager.getOne( email );
+        
+        const findUser = new User({
+            'id': user._id,
+            'firstName': user.firstName,
+            'lastName': user.lastName,
+            'email': user.email,
+            'lastlogin':user.lastLogin
+        })
+        res.status(200).send({message: "User find successfully", findUser})
     } catch (error) {
         throw new Error(error.message)
     }
