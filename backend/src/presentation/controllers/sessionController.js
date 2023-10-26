@@ -23,8 +23,6 @@ export const login = async (req, res, next) => {
     try {
         const user = req.body;
         const loginUser = await manager.login(user);
-
-        console.log('loginuser controller: ' + loginUser.data.accessToken);
     
         res.cookie('userToken', loginUser.data.accessToken,
                 {

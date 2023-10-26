@@ -45,14 +45,14 @@ export const getOne = async(req, res, next) => {
         }
         const user = await manager.getOne( email );
         
-        const findUser = new User({
+        const userData = new User({
             'id': user._id,
             'firstName': user.firstName,
             'lastName': user.lastName,
             'email': user.email,
             'lastlogin':user.lastLogin
         })
-        res.status(200).send({message: "User find successfully", findUser})
+        res.status(200).send({message: "User find successfully", userData})
     } catch (error) {
         throw new Error(error.message)
     }
@@ -81,7 +81,7 @@ export const deleteOne = async(req, res, next) => {
         }
 
         const userDeleted = await manager.deleteOne(email)
-        res.status(200).send(`${userDeleted.firstname, userDeleted.email} deleted`)
+        res.status(200).send({ message: 'User deleted successfully', userDeleted })
     } catch (error) {
         throw new Error(error.message)
     }

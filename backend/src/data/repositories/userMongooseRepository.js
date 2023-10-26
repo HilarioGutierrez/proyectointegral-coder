@@ -91,7 +91,7 @@ class userMongooseRepository{
         }
     }
 
-    async delete(email) {
+    async deleteOne(email) {
         try {
             const user = await userSchema.findOneAndDelete({email:email}, {delete:true})
 
