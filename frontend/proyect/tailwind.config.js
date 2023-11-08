@@ -6,6 +6,8 @@ export default {
   ],
   theme: {
     screens: {
+      'xs': '320px',
+      // => @media (min-width: 320px) { ... }
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
@@ -28,6 +30,9 @@ export default {
       '4': '24px',
       '5': '32px',
       '6': '48px',
+    },
+    backgroundImage:{
+      'url': 'url(https://res.cloudinary.com/dey3fcafu/image/upload/v1699413481/React%20JS/practica%20react/pawel-czerwinski-lWBZ01XRRoI-unsplash_dh3mrv.jpg)'
     }
   },
   variants: {},
