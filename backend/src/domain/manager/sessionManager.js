@@ -41,7 +41,7 @@ class sessionManager{
             const accessToken = generateToken(user);
 
             const data = { ...user, lastLogin: new Date().toDateString(), accessToken}
-            console.log('data sessionManager: ', data);
+            console.log('data sessionManager: ', {...data, password: 'xxxx'});
 
             return {message: 'Success', data: data};
 

@@ -1,12 +1,21 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import apiRouter from '../routes/index.js';
+import cors from 'cors';
 
 dotenv.config();
 
 class AppExpress {
     init () {
         this.app = express();
+        
+        const corsOption = {
+            "origin": 'http://localhost:5173',
+            "methods":"GET,HEAD,PUT,PATCH,POST,DELETE" ,
+            "preflightContinue": false ,
+            "optionsSuccessStatus": 200 
+            }
+        this.app.use(cors());
 
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
