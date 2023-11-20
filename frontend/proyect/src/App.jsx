@@ -1,14 +1,13 @@
 import 'tailwindcss/tailwind.css'
-import { useState } from 'react'
 import './App.css'
-import LoginForm from './components/forms/LoginForm'
+import Home from './components/home/home'
+import Rutas from './components/Routes'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-<LoginForm />
+    <Rutas/>
     </>
   )
 }
