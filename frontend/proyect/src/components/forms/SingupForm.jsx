@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import Btn from '../Button/Btn';
 
-const RegisterForm = () => {
+const SingupForm = () => {
 
-    const handleClick = async(e) => {
+    const HandleSingup = async(e) => {
         try {
             e.preventDefault();
             const response = await axios.post('http://localhost:8080/api/sessions/singup', {firstName, lastName, email,  password, confirmPassword})
             console.log(response.data);
         } catch (error) {
-            
+            throw new Error(error);
         }
     }
 
@@ -36,13 +37,15 @@ const RegisterForm = () => {
                 <label className='mt-4 text-dark'  htmlFor="password">Password</label>
                 <input value={password} className='rounded-3xl w-1/4 text-black p-1  bg-lime-200' type="password" onChange={e=>{setPassword(e.target.value)}} />
 
-                <label className='mt-4 text-dark'  htmlFor="confirmPasword">Confirm Password</label>
-                <input value={confirmPassword} className='rounded-3xl w-1/4 text-black p-1  bg-lime-200' type="password" onChange={e=>{setConfirmPassword(e.target.value)}}/>
-
-                <button className='border-2 m-5 p-1 rounded-md hover:bg-lime-200 hover:text-black' onClick={handleClick}>Send</button>
+                {/* <label className='mt-4 text-dark'  htmlFor="confirmPasword">Confirm Password</label>
+                <input value={confirmPassword} className='rounded-3xl w-1/4 text-black p-1  bg-lime-200' type="password" onChange={e=>{setConfirmPassword(e.target.value)}}/> */}
+                <div>
+                <a href='/login' className='border-2 m-4 p-1 rounded-md hover:bg-lime-200 hover:text-black'>Back</a>
+                <Btn handle={HandleSingup} text={"Send"}/>
+                </div>
             </form>
         </div>
     )
 }
 
-export default RegisterForm
+export default SingupForm

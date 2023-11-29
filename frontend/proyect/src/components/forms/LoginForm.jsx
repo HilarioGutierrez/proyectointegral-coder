@@ -44,7 +44,7 @@ const LoginForm = () => {
                         <button className='p-1 w-2/4 rounded-2xl min-w-fit bg-lime-500 hover:bg-lime-950 transition-colors font-bold border-2 shadow-xl text-black hover:text-white' onClick={handleLogin}>Login</button>
                     </div>
                     <div className=' w-auto flex items-center xs:justify-evenly sm:justify-center'>
-                        <a href="http://localhost:8080/api/users" target='_blank' className='p-2 hover:underline mb-3 font- text-white'>Forgot password</a>
+                        <a href="/forgotPassword" className='p-2 hover:underline mb-3 font- text-white'>Forgot password</a>
                         <a href="/singup" className='p-2 hover:underline mb-3 text-white'>Singup</a>
                     </div>
 
