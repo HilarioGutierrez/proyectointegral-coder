@@ -12,10 +12,8 @@ class sessionManager{
 
     async singup (user) {
         try {
-            const dto = {...user, password: await createHash(user.password, 10) };
-            userCreateValidation.parse(dto);
-            
-            const newUser = await this.manager.create(dto);
+            userCreateValidation.parse(user);
+            const newUser = await this.manager.create(user);
     
             return newUser;
             

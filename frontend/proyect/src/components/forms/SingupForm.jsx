@@ -37,8 +37,8 @@ const SingupForm = () => {
                 <label className='mt-4 text-dark'  htmlFor="password">Password</label>
                 <input value={password} className='rounded-3xl w-1/4 text-black p-1  bg-lime-200' type="password" onChange={e=>{setPassword(e.target.value)}} />
 
-                {/* <label className='mt-4 text-dark'  htmlFor="confirmPasword">Confirm Password</label>
-                <input value={confirmPassword} className='rounded-3xl w-1/4 text-black p-1  bg-lime-200' type="password" onChange={e=>{setConfirmPassword(e.target.value)}}/> */}
+                <label className='mt-4 text-dark'  htmlFor="confirmPasword">Confirm Password</label>
+                <input value={confirmPassword} className='rounded-3xl w-1/4 text-black p-1  bg-lime-200' type="password" onChange={e=>{setConfirmPassword(e.target.value)}}/>
                 <div>
                 <a href='/login' className='border-2 m-4 p-1 rounded-md hover:bg-lime-200 hover:text-black'>Back</a>
                 <Btn handle={HandleSingup} text={"Send"}/>
