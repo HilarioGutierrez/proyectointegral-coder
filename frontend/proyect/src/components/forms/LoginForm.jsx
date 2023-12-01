@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Btn from '../Button/Btn';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -23,8 +24,6 @@ const LoginForm = () => {
         }
     }
 
-    //¿PORQUE CUANDO HAGO UN SINGUP DESPUES ME DA ERROR EN EL TOCKEN CUANDO QUIERO HACER EL LOGIN DE ESE USUARIO NUEVO SI EL USUARIO SE CREO CORRECTAMENTE EN LA DB?
-
     return (
         <>
             <div className='flex flex-col min-h-screen min-w-full bg-dark'>
@@ -40,8 +39,9 @@ const LoginForm = () => {
                         <label htmlFor="" className='font-light mt-3 text-withe'>Password</label>
                         <input type="password" className='flex w-1/2 text-black p-1 rounded-3xl shadow-md bg-lime-100 border-y-2 border-black' value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    <div className='m-4 w-auto flex items-center justify-center'>
-                        <button className='p-1 w-2/4 rounded-2xl min-w-fit bg-lime-500 hover:bg-lime-950 transition-colors font-bold border-2 shadow-xl text-black hover:text-white' onClick={handleLogin}>Login</button>
+                    <div className='m-4 w-2/4 mx-auto flex flex-row justify-center'>
+                    <Btn handle={handleLogin} text={"Login"}/>
+                        {/* <button className='p-1 w-2/4 rounded-2xl min-w-fit bg-lime-500 hover:bg-lime-950 transition-colors font-bold border-2 shadow-xl text-black hover:text-white' onClick={handleLogin}>Login</button> */}
                     </div>
                     <div className=' w-auto flex items-center xs:justify-evenly sm:justify-center'>
                         <a href="/forgotPassword" className='p-2 hover:underline mb-3 font- text-white'>Forgot password</a>
