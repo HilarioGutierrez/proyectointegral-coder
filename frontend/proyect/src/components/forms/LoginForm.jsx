@@ -13,11 +13,10 @@ const LoginForm = () => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
             if (response.statusCode !== 200) {
-                console.log('Inicio de sesión exitoso:', response.data);
+                window.location.href = response.data.redirectUrl
             } else {
                 console.error('Error al iniciar sesión:', response.data);
             }
-            // Configuración de Axios para incluir el token en las cabeceras
 
         } catch (error) {
             console.error('Ha surgido un error', error.message);
@@ -41,7 +40,6 @@ const LoginForm = () => {
                     </div>
                     <div className='m-4 w-2/4 mx-auto flex flex-row justify-center'>
                     <Btn handle={handleLogin} text={"Login"}/>
-                        {/* <button className='p-1 w-2/4 rounded-2xl min-w-fit bg-lime-500 hover:bg-lime-950 transition-colors font-bold border-2 shadow-xl text-black hover:text-white' onClick={handleLogin}>Login</button> */}
                     </div>
                     <div className=' w-auto flex items-center xs:justify-evenly sm:justify-center'>
                         <a href="/forgotPassword" className='p-2 hover:underline mb-3 font- text-white'>Forgot password</a>

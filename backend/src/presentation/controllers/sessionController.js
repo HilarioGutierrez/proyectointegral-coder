@@ -28,7 +28,8 @@ export const login = async (req, res, next) => {
                     maxAge: 60 * 60 * 1000 , 
                     httpOnly: true
                 })
-                .status(200).send({message: 'success', ...loginUser.data, password: undefined});
+                .status(200)
+                .json({success: true, redirectUrl: '/', data: loginUser, accessToken: loginUser.data.accessToken,});
         
     } catch (error) {
         throw new Error(error.message);
