@@ -8,7 +8,6 @@ class userMongooseRepository{
     async create(user) {
         try {
             const dto = {...user, password: await createHash(user.password,10)};
-            userCreateValidation.parse(dto);
             const newUser = await userSchema.create(dto);
 
             return new User({
@@ -91,7 +90,7 @@ class userMongooseRepository{
         }
     }
 
-    async delete(email) {
+    async deleteOne(email) {
         try {
             const user = await userSchema.findOneAndDelete({email:email}, {delete:true})
 
