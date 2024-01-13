@@ -34,6 +34,10 @@ class sessionManager{
                 return {message: 'Error', error: 'invalid password'};
             }
 
+            if(!user.confirmUser){
+                throw Error ('User is not confirmed');
+            }
+
             await this.manager.updateOne(email,{lastLogin: new Date()})
 
             const accessToken = generateToken(user);

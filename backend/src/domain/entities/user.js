@@ -6,6 +6,7 @@ class User {
         this.lastName = props.lastName;
         this.email = props.email;
         this.password = props.password;
+        this.confirmUser = props.confirmUser;
         this.lastLogin = props.lastLogin;
     }
 }

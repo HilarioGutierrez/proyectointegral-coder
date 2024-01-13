@@ -1,3 +1,4 @@
+import { Error } from "mongoose";
 import sessionManager from "../../domain/manager/sessionManager.js";
 
 const manager = new sessionManager();
@@ -5,8 +6,11 @@ const manager = new sessionManager();
 export const singup = async (req, res, next) => {
     try {
         const user = req.body;
+
+        if(user.password !== user.confirmPassword) {
+            throw new Error("Sorry, don't match the password");
+        }
         const newUser = await manager.singup(user);
-        console.log("session controller", "user: ", user, "newUser: ", newUser);
         res.status(201).send( { message: "Success", newUser} );
 
         if(!newUser)

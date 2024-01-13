@@ -9,12 +9,13 @@ class userMongooseRepository{
         try {
             const dto = {...user, password: await createHash(user.password,10)};
             const newUser = await userSchema.create(dto);
-
+            
             return new User({
                 'firstName': newUser.firstName,
                 'lastName': newUser.lastName,
                 'email': newUser.email,
                 'password': newUser.password,
+                'confirmUser': false,
                 'lastLogin': new Date()
             })
 
@@ -59,6 +60,7 @@ class userMongooseRepository{
                 'lastName': user.lastName,
                 'email': user.email,
                 'password': user.password,
+                'confirmUser': user.confirmUser,
                 'lastlogin':user.lastLogin
             })
 
@@ -82,6 +84,7 @@ class userMongooseRepository{
                 'lastName': user.lastName,
                 'email': user.email,
                 'password': user.password,
+                'confirmUser': user.confirmUser,
                 'lastLogin': user.lastLogin
             })
 

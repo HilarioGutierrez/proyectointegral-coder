@@ -13,6 +13,7 @@ export const create = async(req, res, next) => {
 
         const newUser = await manager.create(user)
         const userRes = {...newUser}
+        console.log(userRes);
         res.status(200).send({ message: "User created successfully", user: userRes})
     } catch (error) {
         next()
@@ -44,13 +45,13 @@ export const getOne = async(req, res, next) => {
 
         }
         const user = await manager.getOne( email );
-        
         const userData = new User({
             'id': user._id,
             'firstName': user.firstName,
             'lastName': user.lastName,
             'email': user.email,
-            'lastlogin':user.lastLogin
+            "confirmUser": user.confirmUser,
+            'lastLogin':user.lastLogin
         })
         res.status(200).send({message: "User find successfully", userData})
     } catch (error) {
