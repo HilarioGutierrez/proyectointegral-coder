@@ -1,5 +1,6 @@
 import userManager from "../../domain/manager/userManager.js";
 import User from "../../domain/entities/user.js";
+import { verifyToken } from "../../domain/utils/verifyToken.js";
 
 const manager = new userManager()
 
@@ -44,14 +45,17 @@ export const getOne = async(req, res, next) => {
             res.status(403).send("Invalid email");
 
         }
-        const user = await manager.getOne( email );
+        const data = await manager.getOne( email );
+        if(!data) {
+            res.status(403).send("Invalid email");
+        }
         const userData = new User({
-            'id': user._id,
-            'firstName': user.firstName,
-            'lastName': user.lastName,
-            'email': user.email,
-            "confirmUser": user.confirmUser,
-            'lastLogin':user.lastLogin
+            'id': data._id,
+            'firstName': data.firstName,
+            'lastName': data.lastName,
+            'email': data.email,
+            "confirmUser": data.confirmUser,
+            'lastLogin':data.lastLogin
         })
         res.status(200).send({message: "User find successfully", userData})
     } catch (error) {
@@ -85,5 +89,26 @@ export const deleteOne = async(req, res, next) => {
         res.status(200).send({ message: 'User deleted successfully', userDeleted })
     } catch (error) {
         throw new Error(error.message)
+    }
+}
+
+export const confirmUser = async(req, res, next) => {
+    try {
+        const { email, token } = req.params;
+        const verify = verifyToken(token, process.env.PRIVATE_KEY);
+
+        if(!verify) {
+            throw new Error ('Sorry, you link is not authorized. Please register again')
+        }
+
+        const user = await manager.updateOne(email, {confirmUser: true}, {new:true});
+
+        if(!user) {
+            res.status(404).send('error creating')
+        }
+            res.status(200).send('ok')
+
+    } catch (error) {
+        throw new Error(JSON.stringify(error.message))
     }
 }

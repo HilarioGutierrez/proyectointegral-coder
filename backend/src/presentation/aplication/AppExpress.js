@@ -1,4 +1,5 @@
 import express from 'express';
+import session from 'express-session';
 import dotenv from 'dotenv';
 import apiRouter from '../routes/index.js';
 import cors from 'cors';
@@ -9,10 +10,21 @@ class AppExpress {
     init () {
         this.app = express();
         
-        this.app.use(cors());
+        const corsOptions = {
+            origin: 'http://localhost:5173',
+            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+            credentials: true,
+            optionsSuccessStatus: 204,
+        };
 
+        this.app.use(cors(corsOptions));
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(session({
+            secret: process.env.PRIVATE_KEY,
+            resave: false,
+            saveUninitialized: false,
+        }))
     }
 
     build() {

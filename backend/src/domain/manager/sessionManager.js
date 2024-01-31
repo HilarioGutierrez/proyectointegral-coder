@@ -1,4 +1,5 @@
 import { generateToken } from "../utils/generateToken.js";
+import { nodemailerConfirmUser } from "../utils/nodemailerConfig.js";
 import { createHash, isValidPassword } from "../utils/passwardHash.js"
 import { loginValidation } from "../validation/session/loginValidation.js";
 import { userCreateValidation } from "../validation/userCreateValidation.js"
@@ -13,8 +14,12 @@ class sessionManager{
     async singup (user) {
         try {
             userCreateValidation.parse(user);
+            const token = generateToken()
             const newUser = await this.manager.create(user);
-    
+            
+
+            await nodemailerConfirmUser(token,newUser.firstName, newUser.email);
+
             return newUser;
             
         } catch (error) {
@@ -42,7 +47,7 @@ class sessionManager{
 
             const accessToken = generateToken(user);
 
-            const data = { ...user, lastLogin: new Date().toDateString(), accessToken}
+            const data = { ...user, accessToken, lastLogin: new Date().toDateString() }
 
             return {message: 'Success', data: data};
 

@@ -33,27 +33,25 @@ export const login = async (req, res, next) => {
                     httpOnly: true
                 })
                 .status(200)
-                .json({success: true, redirectUrl: '/', data: loginUser, accessToken: loginUser.data.accessToken,});
-        
+                .json({success: true, redirectUrl: '/', data: loginUser});
     } catch (error) {
-        throw new Error(error.message);
+        next(error);
     }
 };
 
-export const loguot = async (req, res, next) => {
+export const logout = async (req, res, next) => {
     try {
-        const user = req.body.email;
 
-        req.session.destroy(err => {
+        req.session.destroy(err =>{
             if(!err){
-                res.status(200).send({message:"Success logout", user});
+                res.status(200).send({message: `Logout successfully`});
+            }else{
+                res.status(500).send({message: 'error', error: err.message});
             }
-            res.status(400).send({message:"Invalid data", error: err.message});
         });
-    } catch (error) {
-        throw new Error(error.message);
+    } 
+    catch (e) {
+        next(e);
     }
-
-
 };
 

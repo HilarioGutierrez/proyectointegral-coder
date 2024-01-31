@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { create, deleteOne, getAll, getOne, updateOne } from "../../controllers/userController.js";
+import { confirmUser, create, deleteOne, getAll, getOne, updateOne } from "../../controllers/userController.js";
 
 const userRouter = Router();
 
@@ -8,5 +8,6 @@ userRouter.get('/', getAll);
 userRouter.get('/:email', getOne);
 userRouter.put('/:email', updateOne);
 userRouter.delete('/:email', deleteOne);
+userRouter.put('/confirm-user/:email/:token', confirmUser)
 
 export default userRouter;

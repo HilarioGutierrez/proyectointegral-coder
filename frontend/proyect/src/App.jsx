@@ -1,7 +1,6 @@
 import 'tailwindcss/tailwind.css'
 import './App.css'
-import Home from './components/home/home'
-import Rutas from './components/Routes'
+import Rutas from './components/Routes/Index'
 
 function App() {
 
