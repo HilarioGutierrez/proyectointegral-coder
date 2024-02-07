@@ -32,6 +32,8 @@ const ForgotPassForm = () => {
     }
 
     return (
+        
+        <>
         <div id='divForgotPass' className=' w-2/6 flex flex-col mx-auto min-h-screen items-center justify-center'>
             <h4 className='mx-auto text-2xl text-white text-center m-3 font-semibold font-style: italic font'>Your email</h4>
             <input id='email' value={email} type="email" placeholder='email@email.com' className=' mt-3 mb-3 min-w-full h-6 bg-lime-100 text-black text-center rounded-3xl' onChange={(e) => setEmail(e.target.value)} />
@@ -39,6 +41,7 @@ const ForgotPassForm = () => {
             <a href='/login' className='p-2 hover:underline text-white'>Back</a>
             {loading && <Loader />}
         </div>
+        </>
 
 
     )
